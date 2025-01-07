@@ -18,7 +18,7 @@ function listdata(){
         success: function(dta){
             let tbl = ""
             let idx = 0
-            if(dta.error == 4)
+            if(dta.error == 0)
                 dta.TESTI.forEach(function(isi){
                 tbl += `<tr>
                 <td>${isi.NAMA}</td>

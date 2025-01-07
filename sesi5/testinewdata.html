@@ -29,7 +29,7 @@
             </div>
             <div class="form-group">
                 <label>Email</label>
-                <input type="email" name="Email" class="form-control">
+                <input type="email" name="EMAIL" class="form-control">
             </div>
             <div class="form-group">
                 <label>Testimoni</label>
@@ -55,7 +55,7 @@
             $("#ftesti").on("submit",function(ev){
                 ev.preventDefault()
                 var nVal = $(this).serialize()
-                // var nVal = $("#ftesti").serialize
+                console.log(nVal)
 
                 $.ajax({
                     url: urlSTORED,
@@ -70,7 +70,7 @@
                             $("#infstatus").html("terjadi kendala di saat penyimpanan")
                         }
                         setTimeout(function(){
-                            window.location.replace("./sesi5/testilistdata.html")
+                            window.location.replace("testilistdata.html")
                         },3000)
                     },
                     error:function(){
