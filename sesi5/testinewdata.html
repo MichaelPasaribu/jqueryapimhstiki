@@ -13,6 +13,12 @@
     </div>
 
     <div class="container">
+        <div class="alert alert-info" role="alert" id="infstatus">
+            A simple info alert—check it out!
+          </div>
+    </div>
+
+    <div class="container">
         <form method="post" id="ftesti">
             <input type="hidden" name="ACT" value="stored">
             <input type="hidden" name="NIM" value="2401010700">
@@ -38,6 +44,43 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script>
+        var NIM = "2401010700"
+        var urlAPI = "https://apimhstiki.ptov.my.id/"
+        var urlSTORED = `${urlAPI}/testi`
+
+        $(function(){
+            $("#infstatus").css("display","none")
+
+            $("#ftesti").on("submit",function(ev){
+                ev.preventDefault()
+                var nVal = $(this).serialize()
+                // var nVal = $("#ftesti").serialize
+
+                $.ajax({
+                    url: urlSTORED,
+                    method: 'POST',
+                    data: nVal,
+                    dataType: 'json',
+                    success:function(dta){
+                        $("#infstatus").css("display","block")
+                        if(dta.error==0){                       
+                            $("#infstatus").html("data testimoni telah disimpan")
+                        }else{
+                            $("#infstatus").html("terjadi kendala di saat penyimpanan")
+                        }
+                        setTimeout(function(){
+                            window.location.replace("./sesi5/testilistdata.html")
+                        },3000)
+                    },
+                    error:function(){
+                        console.log("pengiriman ke server gagal")
+                    }
+                
+                })
+            })
+        })
+    </script>
 
   </body>
 </html>
